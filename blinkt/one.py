@@ -21,4 +21,4 @@ from blinkt import set_pixel, show
 
 set_pixel(3,255,255,0)
 show()
-time.sleep(0.5)
+# time.sleep(0.5)
