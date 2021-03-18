@@ -15,16 +15,15 @@
 # over a total period of 30 seconds (30000ms), 
 # named image0001.jpg, image0002.jpg, and so on, through to image0015.jpg.
 # 
-# 8 hours is 28800000 milliseconds (5 zeros)
-# 10 minutes is 600000 milliseconds (5 zeros)
-# 1 minute is 60000 milliseconds (4 zeros)
-# 1 hour is 3600000 milliseconds (5 zeros)
+# 8 hours is 28800000 milliseconds
+# 10 minutes is 600000 milliseconds
+# 1 minute is 60000 milliseconds
 
 DATE=$(date +"%Y-%m-%d_%H%M")
 #raspistill -vf -hf -o $DATE.jpg
 
-# raspistill --timeout 28800000 --timelapse 60000 --output images/$DATE.jpg
+raspistill --timeout 28800000 --timelapse 60000 --output images/image%08d.jpg
 
-raspistill --timeout 600000 --timelapse 2000 --output images/image%08d.jpg
+ls images/*.jpg > stills.txt
 
-#EOF
+mencoder -nosound -ovc lavc -lavcopts vcodec=mpeg4:aspect=16/9:vbitrate=8000000 -vf scale=1920:1080 -o timelapse.mp4 -mf type=jpeg:fps=24 mf://@stills.txt

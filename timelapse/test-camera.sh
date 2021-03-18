@@ -15,16 +15,10 @@
 # over a total period of 30 seconds (30000ms), 
 # named image0001.jpg, image0002.jpg, and so on, through to image0015.jpg.
 # 
-# 8 hours is 28800000 milliseconds (5 zeros)
-# 10 minutes is 600000 milliseconds (5 zeros)
-# 1 minute is 60000 milliseconds (4 zeros)
-# 1 hour is 3600000 milliseconds (5 zeros)
+# 8 hours is 28800000 milliseconds
+# 10 minutes is 600000 milliseconds
+# 1 minute is 60000 milliseconds
 
 DATE=$(date +"%Y-%m-%d_%H%M")
-#raspistill -vf -hf -o $DATE.jpg
+raspistill -vf -hf --rotation 180 -o ~/Desktop/$DATE.jpg
 
-# raspistill --timeout 28800000 --timelapse 60000 --output images/$DATE.jpg
-
-raspistill --timeout 600000 --timelapse 2000 --output images/image%08d.jpg
-
-#EOF
